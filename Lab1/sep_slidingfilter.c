@@ -63,14 +63,14 @@ printf("Start time : %ld %ld\n",(long int)tp1.tv_sec,tp1.tv_nsec);
 fprintf(tp,"Start time : %ld %ld\n",(long int)tp1.tv_sec,tp1.tv_nsec);
 
 	/* smooth image, skipping the border points */
-  /*Seprable Sliding Filter Columns part :The Filter is row vector.)*/
+  /*Seprable Sliding Filter Columns part.*/
 for (r=0; r<ROWS; r++)
   for (c=3; c<COLS-3; c++)
     {
       if (c == 3)
       {
         sum=0;
-        for (c1 = -3;c1<4;c1++)
+        for (c1 = -3;c1<=3;c1++)
           sum += image[r*COLS+(c+c1)];
       }
       else
@@ -80,7 +80,7 @@ for (r=0; r<ROWS; r++)
       }
       temp[r*COLS+c]=sum;
     }
-/* Horizontal Part filter: The Filter is column vector.*/
+/* Horizontal filter. Row part*/
 
 for (c=0; c<COLS; c++)
   for (r=3; r<ROWS-3; r++)
@@ -88,7 +88,7 @@ for (c=0; c<COLS; c++)
       if (r == 3)
       {
         sum=0;
-        for (r1 = -3;r1<4;r1++)
+        for (r1 = -3;r1<=3;r1++)
           sum += temp[(r+r1)*COLS+c];
       }
       else

@@ -38,3 +38,27 @@ Start time : 1662256059 44579500
 End Time : 1662256059 47715800
 Difference in nsec : 3136300
 
+Start time : 1662335402 839094400
+End Time : 1662335402 841712900
+Difference in nsec : 2618500
+
+Start time : 1662335485 316294600
+End Time : 1662335485 319101900
+Difference in nsec : 2807300
+
+Start time : 1662335573 557304600
+End Time : 1662335573 560069700
+Difference in nsec : 2765100
+
+Start time : 1662335830 804411300
+End Time : 1662335830 807195800
+Difference in nsec : 2784500
+
+Start time : 1662336019 609369000
+End Time : 1662336019 612034300
+Difference in nsec : 2665300
+
+Start time : 1662336113 374079200
+End Time : 1662336113 377911600
+Difference in nsec : 3832400
+

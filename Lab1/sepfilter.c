@@ -61,7 +61,7 @@ printf("Start time : %ld %ld\n",(long int)tp1.tv_sec,tp1.tv_nsec);
 fprintf(tp,"Start time : %ld %ld\n",(long int)tp1.tv_sec,tp1.tv_nsec);
 
 	/* smooth image, skipping the border points */
-  /*Seprable Filter Columns part (the filter is row vector)*/
+  /*Seprable Filter Columns part*/
 for (r=3; r<ROWS-3; r++)
   for (c=0; c<COLS; c++)
     {
@@ -70,7 +70,7 @@ for (r=3; r<ROWS-3; r++)
         sum+=image[(r+r1)*COLS+c];
     temp[r*COLS+c]=sum;
     }
-/*vertical filter*/
+/*Horizontal filter - Row part*/
 for (r=0; r<ROWS; r++)
   for (c=3; c<COLS-3; c++)
     {
