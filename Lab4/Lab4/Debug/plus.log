@@ -1,0 +1,4 @@
+﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  main.c
+D:\Fall 22\ECE 6310 Intro to CV\Labs\Lab4\Lab4\main.c(440,17): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  plus.vcxproj -> D:\Fall 22\ECE 6310 Intro to CV\Labs\Lab4\Lab4\Debug\plus.exe
