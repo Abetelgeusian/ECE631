@@ -1,0 +1,1 @@
+talk about the relationship between the iter and weights. How as change the number of iterations the weights have to be changed.
