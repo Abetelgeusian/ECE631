@@ -139,7 +139,7 @@ fclose(fpt);
 // Let us first calculate external energy.
 int l,m,n; // counters
 int c1,c2,c3; // for energy loops
-int iter = 1;
+int iter = 5;
 double ext_E[window*window], int_E1[window*window],int_E2[window*window],total_E[window*window];
 // printf("\n %d", window);
 for(l=0;l<iter;l++){
@@ -148,12 +148,13 @@ for(l=0;l<iter;l++){
     c1 = 0 ;
     for (x= (-window/2); x <=window/2; x++){
         for (y = (-window/2); y <=window/2; y++){
-          ext_E[c1] = (double)SQR(norm_sob[(py[m]+x)*COLS+(px[m]+y)] / 255);
+          ext_E[c1] = (double)SQR(norm_sob[(py[m]+x)*COLS+(px[m]+y)]);
           // printf("%f ", ext_E[c1]);
           c1++;
         }
     } //  external energy
     // printf("External energy is %f \n",ext_E);
+
     c2 = 0;
     for (x= (-window/2); x <=window/2; x++){
         for (y = (-window/2); y <=window/2; y++){
@@ -163,6 +164,7 @@ for(l=0;l<iter;l++){
           c2++;
         }
     } // internal energy 1
+
     distance = 0.0;
     if(m == 41){distance += sqrt(SQR(py[m]-py[0]) + SQR(px[m]-px[0]));}
     else{distance += sqrt(SQR(py[m]-py[m+1]) + SQR(px[m]-px[m+1]));}
@@ -188,12 +190,12 @@ for(l=0;l<iter;l++){
     
     // All the energies need to be in normalised before they could be added.
 
-    int min1;
-    int max1;
-    int min2 ;
-    int max2 ;
-    int min3 ;
-    int max3 ;
+    int min1 = 10000;
+    int max1 = 0;
+    int min2 = 10000;
+    int max2 = 0;
+    int min3 = 10000;
+    int max3 = 0;
     for (n = 0; n < (window*window); n++){
         if(max1 < ext_E[n]){max1 = ext_E[n];}
         if(min1 > ext_E[n]){min1 = ext_E[n];}
@@ -228,7 +230,7 @@ for(l=0;l<iter;l++){
     }
 
     for (n = 0; n < window*window;n++){
-      total_E[n] = (double) (32 *(int_E1[n]) + 1 *(int_E2[n]) + 1 *(ext_E[n])) ; 
+      total_E[n] = (double) (50 *(int_E1[n]) + 1 *(int_E2[n]) - 7.5 *(ext_E[n])) ; 
       // printf("%f \n",total_E[n]);
     }
     // for(x=0;x<50;x++){
@@ -237,6 +239,7 @@ for(l=0;l<iter;l++){
 
     // We have to move the point to location with min energy. Hence - 
     int min_idx = 0;
+    min = 10000;
     for (n = 0; n < window*window;n++){
       if(min > total_E[n]){min = total_E[n]; min_idx = n ;}
     }
@@ -251,12 +254,12 @@ fpt = fopen("hawk_finalpts.txt","wb");
 for(n=0;n<total_points;n++){
   printf("%d %d\n",px[n],py[n]);
   fprintf(fpt,"%d %d\n",px[n],py[n]);
-  for(x=-3;x<=3;x++){Input[(py[n]+x)*COLS+px[n]] = 0;}
-  for(y=-3;y<=3;y++){Input[(py[n])*COLS+(px[n]+y)] = 0;}
+  for(x=-3;x<=3;x++){Input[(py[n]+x)*COLS+px[n]] = 255;}
+  for(y=-3;y<=3;y++){Input[(py[n])*COLS+(px[n]+y)] = 255;}
 }
 fclose(fpt);
 printf("%d",total_points);
-fpt=fopen("final_output.ppm","w");
+fpt=fopen("final_output.ppm","wb");
 fprintf(fpt,"P5 %d %d 255 \n",COLS,ROWS);
 fwrite(Input,ROWS*COLS,1,fpt);
 fclose(fpt);
