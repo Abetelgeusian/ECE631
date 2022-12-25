@@ -230,7 +230,7 @@ for(l=0;l<iter;l++){
     }
 
     for (n = 0; n < window*window;n++){
-      total_E[n] = (double) (50 *(int_E1[n]) + 1 *(int_E2[n]) - 7.5 *(ext_E[n])) ; 
+      total_E[n] = (double) (50 *(int_E1[n]) + 1.2  *(int_E2[n]) - 7.5 *(ext_E[n])) ; 
       // printf("%f \n",total_E[n]);
     }
     // for(x=0;x<50;x++){
@@ -250,10 +250,10 @@ for(l=0;l<iter;l++){
 }//iter loop
 // printf("%d",total_points);
 
-fpt = fopen("hawk_finalpts.txt","wb");
+fpt = fopen("hawk_finalpts.csv","wb");
 for(n=0;n<total_points;n++){
   printf("%d %d\n",px[n],py[n]);
-  fprintf(fpt,"%d %d\n",px[n],py[n]);
+  fprintf(fpt,"%d,%d\n",px[n],py[n]);
   for(x=-3;x<=3;x++){Input[(py[n]+x)*COLS+px[n]] = 255;}
   for(y=-3;y<=3;y++){Input[(py[n])*COLS+(px[n]+y)] = 255;}
 }
